@@ -59,7 +59,7 @@ int main() {
     books[3].setBookDetails("Pride and Prejudice", "Jane Austen", "ISBN004", true);
     books[4].setBookDetails("Moby Dick", "Herman Melville", "ISBN005", true);
 
-    cout << "Library Book System" << endl;
+    cout << "Library Management System" << endl;;
 
     while (true) {
         cout << endl;
@@ -72,7 +72,7 @@ int main() {
         cin >> inputISBN;
 
         if (inputISBN == "0") {
-            cout << "Program ended." << endl;
+            cout << "Program terminated." << endl;
             break;
         }
 
