@@ -1,0 +1,95 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book {
+private:
+    string title;
+    string author;
+    string isbn;
+    bool availability;
+
+public:
+    void setBookDetails(string t, string a, string i, bool av) {
+        title = t;
+        author = a;
+        isbn = i;
+        availability = av;
+    }
+
+    void displayBookDetails() {
+        cout << "Title: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "ISBN: " << isbn << endl;
+        if (availability == true) {
+            cout << "Availability: Available" << endl;
+        } else {
+            cout << "Availability: Borrowed" << endl;
+        }
+        cout << endl;
+    }
+
+    void borrowBook() {
+        if (availability == true) {
+            availability = false;
+            cout << "Book borrowed successfully." << endl;
+        } else {
+            cout << "Error: Book is unavailable." << endl;
+        }
+    }
+
+    void returnBook() {
+        availability = true;
+        cout << "Book returned successfully." << endl;
+    }
+
+    string getISBN() {
+        return isbn;
+    }
+};
+
+int main() {
+    Book books[5];
+    string inputISBN;
+    bool found = false;
+
+    books[0].setBookDetails("The Great Gatsby", "F. Scott Fitzgerald", "ISBN001", true);
+    books[1].setBookDetails("To Kill a Mockingbird", "Harper Lee", "ISBN002", true);
+    books[2].setBookDetails("1984", "George Orwell", "ISBN003", false);
+    books[3].setBookDetails("Pride and Prejudice", "Jane Austen", "ISBN004", true);
+    books[4].setBookDetails("Moby Dick", "Herman Melville", "ISBN005", true);
+
+    cout << "Library Management System" << endl;
+
+    while (true) {
+        cout << endl;
+        cout << "Book List:" << endl;
+        for (int i = 0; i < 5; i++) {
+            books[i].displayBookDetails();
+        }
+
+        cout << "Enter ISBN to borrow a book (or 0 to exit): ";
+        cin >> inputISBN;
+
+        if (inputISBN == "0") {
+            cout << "Program terminated." << endl;
+            break;
+        }
+
+        found = false;
+
+        for (int i = 0; i < 5; i++) {
+            if (books[i].getISBN() == inputISBN) {
+                books[i].borrowBook();
+                found = true;
+                break;
+            }
+        }
+
+        if (found == false) {
+            cout << "Error: Book not found." << endl;
+        }
+    }
+
+    return 0;
+}
